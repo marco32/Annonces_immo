@@ -14,5 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+// Road for Add new acount
 Route::get('/register', 'RegisterController@getRegister');
 Route::get('/register/new', 'RegisterController@NewRegister');
+
+// Road for get advert in Database;
+Route::get('/view/all', 'ViewController@getAll');
+Route::get('/view/sold', 'ViewController@getSold');
+Route::get('/view/rent', 'ViewController@getRent');
+Route::get('/view/detail/{id}', 'ViewController@getDetail');

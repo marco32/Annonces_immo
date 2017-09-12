@@ -1,0 +1,14 @@
+.accueil{
+	display: flex;
+}
+.img-accueil{
+	margin: 5em;
+}
+.img-annonce{
+	width: 15em;
+	height: 15em;
+}
+.img-detail{
+	width: 40em;
+	height: 40em;
+}

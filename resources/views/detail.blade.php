@@ -10,7 +10,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
   <nav class="navbar navbar-default navbar-static-top">
@@ -21,23 +21,32 @@
    </div>
  </nav>
  <main class="container">
-  <div class="row accueil">
-    <div>
-      <a href="/view/all">
-        <img class="img-accueil" src="annonces.jpg" alt="Toutes les annonces">
-      </a>
+  @foreach($view as $value)
+  <div class="row">
+    <div class="col-md-6">
+      <h2>{{$value->Titre}}</h2>
+      <p>{{$value->Desc_Types}} à <strong>{{$value->Cat}}</strong></p>
+    
+      <p>prix:{{$value->Tarif}}€
+      <?php if($value->Cat == 'Location'){ 
+          echo " par mois";
+       } ?>
+      </p>
+      <p>Meublé : {{($value->Meuble)? 'oui': 'non'}}</p>
+      <p>Etage : {{($value->Etage)? 'oui': 'non'}}</p>
+      <p>adresse: {{$value->Numero}} {{$value->Rue}} {{$value->Code_postal}} {{$value->Ville}}</p>
+      
     </div>
-    <div>
-      <a href="/view/sold">
-        <img class="img-accueil" src="vendre.jpg" alt="A vendre">
-      </a>
-    </div>
-    <div>
-      <a href="/view/rent">
-        <img class="img-accueil" src="louer.jpg" alt="A louer">
-      </a>
+    <div class="col-md-6">
+      
+      <img src="../../{{$value->Photo}}" class="img-detail" alt="">
     </div>
   </div>
+
+
+
+
+  @endforeach
 </main>
 </body>
 </html>

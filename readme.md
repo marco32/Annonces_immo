@@ -1,14 +1,28 @@
-## Documents liés à la conception sont dans le dossier du même nom.
+## Documents related to the design are in the folder of the same name.
 
-Il contient: 
-	* Le schéma de la base de donnée.
-	* Le diagramme de séquence.
-	* Le diagramme d'état.
-	* Le Use Case.
-	* Un dossier "Zonning" avec 12 maquettes.
+It contains:
+
++ Schema of the database.
++ Sequence diagram.
++ State diagram.
++ Use Case.
++ A "Zonning" folder with 12 models.
 
 
 
-## Programmation:
+## Programming:
 
 * Framework: Laravel / Crudbooster.
+
+Executed:
+
+	*Install crudbooster
+	*Create user account
+	*Complete profile
+	*Create advert
+	*Home page
+	*Display listing list
+
+In progress:
+
+	*Display ad details

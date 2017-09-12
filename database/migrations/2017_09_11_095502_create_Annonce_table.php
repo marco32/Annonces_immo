@@ -15,6 +15,9 @@ class CreateAnnonceTable extends Migration
     {
         Schema::create('Annonce', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('fk_user');
+            $table->integer('fk_Categorie');
+            $table->integer('fk_Type');
             $table->integer('Numero');
             $table->string('Rue');
             $table->string('Ville');
