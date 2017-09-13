@@ -23,3 +23,6 @@ Route::get('/view/all', 'ViewController@getAll');
 Route::get('/view/sold', 'ViewController@getSold');
 Route::get('/view/rent', 'ViewController@getRent');
 Route::get('/view/detail/{id}', 'ViewController@getDetail');
+
+// Road for contact form;
+Route::get('/annonce/message/{id}/{user}', 'MessageController@addMessage');

@@ -24,6 +24,8 @@ class CreateAnnonceTable extends Migration
             $table->integer('Code_postal');
             $table->boolean('Meuble');
             $table->integer('Tarif');
+            $table->integer('Surface');
+            $table->boolean('Jardin');
             $table->boolean('Etage');
             $table->integer('Nb_pieces');
             $table->integer('Nb_chambres');

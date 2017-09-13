@@ -29,7 +29,7 @@ class RegisterController extends Controller
         $register->name= $request->name;
         $register->email= $request->email;
         $register->photo= Null;
-        $register->id_cms_privileges= 1;
+        $register->id_cms_privileges= 3;
         $register->password= bcrypt($request->password);
         $register->status= 'Active';
         $register->save();

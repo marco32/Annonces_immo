@@ -5,7 +5,7 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminAnnonce14Controller extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminAnnonce18Controller extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
@@ -17,12 +17,12 @@
 			$this->button_table_action = true;
 			$this->button_bulk_action = true;
 			$this->button_action_style = "button_icon";
-			$this->button_add = true;
-			$this->button_edit = true;
+			$this->button_add = false;
+			$this->button_edit = false;
 			$this->button_delete = true;
 			$this->button_detail = true;
 			$this->button_show = false;
-			$this->button_filter = false;
+			$this->button_filter = true;
 			$this->button_import = false;
 			$this->button_export = false;
 			$this->table = "Annonce";
@@ -30,64 +30,60 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
+			$this->col[] = ["label"=>"Fk User","name"=>"fk_user","join"=>"User,Nom"];
 			$this->col[] = ["label"=>"Titre","name"=>"Titre"];
-			$this->col[] = ["label"=>"Categorie","name"=>"fk_Categorie","join"=>"Cat,Cat"];
-			$this->col[] = ["label"=>"Type","name"=>"fk_Type","join"=>"Type,Desc_Types"];
+			$this->col[] = ["label"=>"Fk Categorie","name"=>"fk_Categorie","join"=>"Cat,Cat"];
+			$this->col[] = ["label"=>"Fk Type","name"=>"fk_Type","join"=>"Type,Desc_Types"];
 			$this->col[] = ["label"=>"Numero","name"=>"Numero"];
 			$this->col[] = ["label"=>"Rue","name"=>"Rue"];
 			$this->col[] = ["label"=>"Ville","name"=>"Ville"];
-			$this->col[] = ["label"=>"Code Postal","name"=>"Code_postal"];
-			$this->col[] = ["label"=>"Meuble","name"=>"Meuble"];
-			$this->col[] = ["label"=>"Tarif","name"=>"Tarif"];
-			$this->col[] = ["label"=>"Etage","name"=>"Etage"];
-			$this->col[] = ["label"=>"Nb Pieces","name"=>"Nb_pieces"];
-			$this->col[] = ["label"=>"Description","name"=>"Desc"];
-			$this->col[] = ["label"=>"Ges","name"=>"Ges"];
-			$this->col[] = ["label"=>"Energie","name"=>"Energie"];
-			$this->col[] = ["label"=>"Crée le","name"=>"created_at"];
+			$this->col[] = ["label"=>"Photo","name"=>"Photo","image"=>true,"width"=>"40"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Fk User','name'=>'fk_user','type'=>'hidden','value'=>CRUDBooster::myId(),'width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Fk User','name'=>'fk_user','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Titre','name'=>'Titre','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Categorie','name'=>'fk_Categorie','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'Cat,Cat'];
-			$this->form[] = ['label'=>'Type','name'=>'fk_Type','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'Type,Desc_Types'];
+			$this->form[] = ['label'=>'Fk Categorie','name'=>'fk_Categorie','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Fk Type','name'=>'fk_Type','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Numero','name'=>'Numero','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Rue','name'=>'Rue','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Ville','name'=>'Ville','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Code Postal','name'=>'Code_postal','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Meuble','name'=>'Meuble','type'=>'checkbox','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'0|non;1|oui'];
+			$this->form[] = ['label'=>'Meuble','name'=>'Meuble','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Tarif','name'=>'Tarif','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Surface','name'=>'Surface','type'=>'number','validation'=>'required','width'=>'col-sm-10','dataenum'=>'0|non;1|oui'];
-			$this->form[] = ['label'=>'Jardin','name'=>'Jardin','type'=>'checkbox','validation'=>'required','width'=>'col-sm-10','dataenum'=>'0|non;1|oui'];
-			$this->form[] = ['label'=>'Etage','name'=>'Etage','type'=>'checkbox','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'0|non;1|oui'];
+			$this->form[] = ['label'=>'Surface','name'=>'Surface','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Jardin','name'=>'Jardin','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Etage','name'=>'Etage','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Nb Pieces','name'=>'Nb_pieces','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Nb Chambres','name'=>'Nb_chambres','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Desc','name'=>'Desc','type'=>'textarea','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Photo','name'=>'Photo','type'=>'filemanager','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Desc','name'=>'Desc','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Photo','name'=>'Photo','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Ges','name'=>'Ges','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Energie','name'=>'Energie','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Fk User','name'=>'fk_user','type'=>'hidden','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Categorie','name'=>'fk_Categorie','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'Cat,Cat'];
-			//$this->form[] = ['label'=>'Type','name'=>'fk_Type','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'Type,Desc_Types'];
-			//$this->form[] = ['label'=>'Numero','name'=>'Numero','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Rue','name'=>'Rue','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Ville','name'=>'Ville','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Code Postal','name'=>'Code_postal','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Meuble','name'=>'Meuble','type'=>'checkbox','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'0|non;1|oui'];
-			//$this->form[] = ['label'=>'Tarif','name'=>'Tarif','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Etage','name'=>'Etage','type'=>'checkbox','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'0|non;1|oui'];
-			//$this->form[] = ['label'=>'Nb Pieces','name'=>'Nb_pieces','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Nb Chambres','name'=>'Nb_chambres','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Desc','name'=>'Desc','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Photo','name'=>'Photo','type'=>'filemanager','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Ges','name'=>'Ges','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Energie','name'=>'Energie','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ["label"=>"Fk User","name"=>"fk_user","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ["label"=>"Titre","name"=>"Titre","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Fk Categorie","name"=>"fk_Categorie","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ["label"=>"Fk Type","name"=>"fk_Type","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ["label"=>"Numero","name"=>"Numero","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ["label"=>"Rue","name"=>"Rue","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Ville","name"=>"Ville","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Code Postal","name"=>"Code_postal","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ["label"=>"Meuble","name"=>"Meuble","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Tarif","name"=>"Tarif","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ["label"=>"Surface","name"=>"Surface","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ["label"=>"Jardin","name"=>"Jardin","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Etage","name"=>"Etage","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Nb Pieces","name"=>"Nb_pieces","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ["label"=>"Nb Chambres","name"=>"Nb_chambres","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ["label"=>"Desc","name"=>"Desc","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Photo","name"=>"Photo","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Ges","name"=>"Ges","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ["label"=>"Energie","name"=>"Energie","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
 			# OLD END FORM
 
 			/* 
@@ -274,7 +270,7 @@
 	    |
 	    */
 	    public function hook_query_index(&$query) {
-	        $query->Where('fk_user', CRUDBooster::myId());
+	        //Your code here
 	            
 	    }
 
@@ -285,20 +281,7 @@
 	    |
 	    */    
 	    public function hook_row_index($column_index,&$column_value) {	        
-	    	if($column_index ==7){
-	    		if($column_value==1){
-	    			$column_value="oui";
-	    		}else{
-	    			$column_value="non";
-	    		}
-	    	}
-	    	elseif($column_index==9){
-	    		if($column_value==1){
-	    			$column_value="oui";
-	    		}else{
-	    			$column_value="non";
-	    		}
-	    	}
+	    	//Your code here
 	    }
 
 	    /*

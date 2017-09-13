@@ -5,89 +5,55 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminAnnonce14Controller extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminCmsUsers1Controller extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
-			$this->title_field = "id";
+			$this->title_field = "name";
 			$this->limit = "20";
 			$this->orderby = "id,desc";
 			$this->global_privilege = false;
 			$this->button_table_action = true;
 			$this->button_bulk_action = true;
 			$this->button_action_style = "button_icon";
-			$this->button_add = true;
-			$this->button_edit = true;
+			$this->button_add = false;
+			$this->button_edit = false;
 			$this->button_delete = true;
 			$this->button_detail = true;
 			$this->button_show = false;
 			$this->button_filter = false;
 			$this->button_import = false;
 			$this->button_export = false;
-			$this->table = "Annonce";
+			$this->table = "cms_users";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Titre","name"=>"Titre"];
-			$this->col[] = ["label"=>"Categorie","name"=>"fk_Categorie","join"=>"Cat,Cat"];
-			$this->col[] = ["label"=>"Type","name"=>"fk_Type","join"=>"Type,Desc_Types"];
-			$this->col[] = ["label"=>"Numero","name"=>"Numero"];
-			$this->col[] = ["label"=>"Rue","name"=>"Rue"];
-			$this->col[] = ["label"=>"Ville","name"=>"Ville"];
-			$this->col[] = ["label"=>"Code Postal","name"=>"Code_postal"];
-			$this->col[] = ["label"=>"Meuble","name"=>"Meuble"];
-			$this->col[] = ["label"=>"Tarif","name"=>"Tarif"];
-			$this->col[] = ["label"=>"Etage","name"=>"Etage"];
-			$this->col[] = ["label"=>"Nb Pieces","name"=>"Nb_pieces"];
-			$this->col[] = ["label"=>"Description","name"=>"Desc"];
-			$this->col[] = ["label"=>"Ges","name"=>"Ges"];
-			$this->col[] = ["label"=>"Energie","name"=>"Energie"];
-			$this->col[] = ["label"=>"Crée le","name"=>"created_at"];
+			$this->col[] = ["label"=>"Id","name"=>"id"];
+			$this->col[] = ["label"=>"Nom","name"=>"name"];
+			$this->col[] = ["label"=>"Prenom","name"=>"id","join"=>"User,Prenom", 'datatable_where'=>'fk_cms_user, cms_users.id'];
+			$this->col[] = ["label"=>"Email","name"=>"email"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Fk User','name'=>'fk_user','type'=>'hidden','value'=>CRUDBooster::myId(),'width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Titre','name'=>'Titre','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Categorie','name'=>'fk_Categorie','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'Cat,Cat'];
-			$this->form[] = ['label'=>'Type','name'=>'fk_Type','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'Type,Desc_Types'];
-			$this->form[] = ['label'=>'Numero','name'=>'Numero','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Rue','name'=>'Rue','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Ville','name'=>'Ville','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Code Postal','name'=>'Code_postal','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Meuble','name'=>'Meuble','type'=>'checkbox','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'0|non;1|oui'];
-			$this->form[] = ['label'=>'Tarif','name'=>'Tarif','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Surface','name'=>'Surface','type'=>'number','validation'=>'required','width'=>'col-sm-10','dataenum'=>'0|non;1|oui'];
-			$this->form[] = ['label'=>'Jardin','name'=>'Jardin','type'=>'checkbox','validation'=>'required','width'=>'col-sm-10','dataenum'=>'0|non;1|oui'];
-			$this->form[] = ['label'=>'Etage','name'=>'Etage','type'=>'checkbox','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'0|non;1|oui'];
-			$this->form[] = ['label'=>'Nb Pieces','name'=>'Nb_pieces','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Nb Chambres','name'=>'Nb_chambres','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Desc','name'=>'Desc','type'=>'textarea','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Photo','name'=>'Photo','type'=>'filemanager','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Ges','name'=>'Ges','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Energie','name'=>'Energie','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Name','name'=>'name','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'Vous ne pouvez entrer que des lettres'];
+			$this->form[] = ['label'=>'Photo','name'=>'photo','type'=>'upload','validation'=>'required|image|max:3000','width'=>'col-sm-10','help'=>'Types de fichiers supportés: JPG, JPEG, PNG, GIF, BMP'];
+			$this->form[] = ['label'=>'Email','name'=>'email','type'=>'email','validation'=>'required|min:1|max:255|email|unique:cms_users','width'=>'col-sm-10','placeholder'=>'Entrez une adresse email valide'];
+			$this->form[] = ['label'=>'Password','name'=>'password','type'=>'password','validation'=>'min:3|max:32','width'=>'col-sm-10','help'=>'Minimum 5 caractères. Veuillez laisser vide si vous n\'avez pas changé de mot de passe.'];
+			$this->form[] = ['label'=>'Cms Privileges','name'=>'id_cms_privileges','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'cms_privileges,name'];
+			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Fk User','name'=>'fk_user','type'=>'hidden','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Categorie','name'=>'fk_Categorie','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'Cat,Cat'];
-			//$this->form[] = ['label'=>'Type','name'=>'fk_Type','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'Type,Desc_Types'];
-			//$this->form[] = ['label'=>'Numero','name'=>'Numero','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Rue','name'=>'Rue','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Ville','name'=>'Ville','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Code Postal','name'=>'Code_postal','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Meuble','name'=>'Meuble','type'=>'checkbox','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'0|non;1|oui'];
-			//$this->form[] = ['label'=>'Tarif','name'=>'Tarif','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Etage','name'=>'Etage','type'=>'checkbox','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'0|non;1|oui'];
-			//$this->form[] = ['label'=>'Nb Pieces','name'=>'Nb_pieces','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Nb Chambres','name'=>'Nb_chambres','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Desc','name'=>'Desc','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Photo','name'=>'Photo','type'=>'filemanager','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Ges','name'=>'Ges','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Energie','name'=>'Energie','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Name','name'=>'name','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'Vous ne pouvez entrer que des lettres'];
+			//$this->form[] = ['label'=>'Photo','name'=>'photo','type'=>'upload','validation'=>'required|image|max:3000','width'=>'col-sm-10','help'=>'Types de fichiers supportés: JPG, JPEG, PNG, GIF, BMP'];
+			//$this->form[] = ['label'=>'Email','name'=>'email','type'=>'email','validation'=>'required|min:1|max:255|email|unique:cms_users','width'=>'col-sm-10','placeholder'=>'Entrez une adresse email valide'];
+			//$this->form[] = ['label'=>'Password','name'=>'password','type'=>'password','validation'=>'min:3|max:32','width'=>'col-sm-10','help'=>'Minimum 5 caractères. Veuillez laisser vide si vous n\'avez pas changé de mot de passe.'];
+			//$this->form[] = ['label'=>'Cms Privileges','name'=>'id_cms_privileges','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'cms_privileges,name'];
+			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			# OLD END FORM
 
 			/* 
@@ -274,7 +240,7 @@
 	    |
 	    */
 	    public function hook_query_index(&$query) {
-	        $query->Where('fk_user', CRUDBooster::myId());
+	        //Your code here
 	            
 	    }
 
@@ -285,20 +251,7 @@
 	    |
 	    */    
 	    public function hook_row_index($column_index,&$column_value) {	        
-	    	if($column_index ==7){
-	    		if($column_value==1){
-	    			$column_value="oui";
-	    		}else{
-	    			$column_value="non";
-	    		}
-	    	}
-	    	elseif($column_index==9){
-	    		if($column_value==1){
-	    			$column_value="oui";
-	    		}else{
-	    			$column_value="non";
-	    		}
-	    	}
+	    	//Your code here
 	    }
 
 	    /*
@@ -370,8 +323,17 @@
 	    | 
 	    */
 	    public function hook_after_delete($id) {
-	        //Your code here
+	        $user= DB::table('User')
+	        			->where('fk_cms_users',$id)
+	        			->delete();
 
+	        $annonce= DB::table('Annonce')
+	        			->where('fk_users',$id)
+	        			->delete();
+
+	   		$message= DB::table('Message')
+	        			->where('fk_User',$id)
+	        			->delete();
 	    }
 
 

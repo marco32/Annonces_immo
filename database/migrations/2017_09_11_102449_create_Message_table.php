@@ -16,7 +16,7 @@ class CreateMessageTable extends Migration
         Schema::create('Message', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('fk_User');
-            $table->integer('fk_Annonce');
+            $table->string('Titre');
             $table->string('Description');
             $table->string('Email');
             $table->timestamps();

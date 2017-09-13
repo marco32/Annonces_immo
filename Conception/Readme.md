@@ -4,6 +4,11 @@ Suite au lancement de la partie programmation et notamment à l'enregistrement d
 
 Suppression des bases de liaisons suivantes:
 
-*Cat_Annonce
-*Type_Annonce
-*User_Annonce
+* Cat_Annonce
+* Type_Annonce
+* User_Annonce
+
+Ajout des critères "Jardin" et "Surface" à la table Annonce.
+
+Modification de la table Message.
+* fk_Annonce->Titre

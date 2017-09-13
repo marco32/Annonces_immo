@@ -16,13 +16,17 @@ It contains:
 
 Executed:
 
-	*Install crudbooster
-	*Create user account
-	*Complete profile
-	*Create advert
-	*Home page
-	*Display listing list
+	* Install crudbooster
+	* Create user account
+	* Complete profile
+	* Create advert
+	* Home page
+	* Display listing advert
+	* Display advert details
+	* Send contact form
+	* Send Notification
+	* When deleting user account all relations foloowing in the DB is delete.
+	
 
 In progress:
-
-	*Display ad details
+	* Keyword search
