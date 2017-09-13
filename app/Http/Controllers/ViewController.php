@@ -17,13 +17,13 @@ class ViewController extends Controller
     public function getSold()
     {
         $view= View::where('fk_categorie',1)->get();
-        dd($view);
+        
         return view('annonce', ['view'=> $view]);
     }
     public function getRent()
     {
         $view= View::where('fk_categorie',2)->get();
-        dd($view);
+        
         return view('annonce', ['view'=> $view]);
     }
     public function getDetail($id)
